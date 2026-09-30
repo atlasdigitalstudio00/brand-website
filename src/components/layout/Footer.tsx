@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Twitter, Sparkles, Heart } from "lucide-react";
+import { ArrowUpRight, Sparkles, Heart } from "lucide-react";
 import { footerNavigation, siteConfig } from "@/config/site";
 import { Container } from "@/components/ui/Container";
 import { BrandMark } from "@/components/ui/BrandMark";
