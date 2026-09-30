@@ -16,9 +16,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Atlas Studio — Practical Digital Resources for Modern Work",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  title: {
+    default: "Atlas Studio — Practical Digital Resources for Modern Work",
+    template: "%s | Atlas Studio",
+  },
   description:
     "Templates, guides, tools, and practical resources for developers, creators, freelancers, and digital professionals.",
+  openGraph: {
+    title: "Atlas Studio — Practical Digital Resources for Modern Work",
+    description: "Templates, guides, tools, and practical resources for developers, creators, freelancers, and digital professionals.",
+    siteName: "Atlas Studio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Atlas Studio — Practical Digital Resources for Modern Work",
+    description: "Templates, guides, tools, and practical resources for developers, creators, freelancers, and digital professionals.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

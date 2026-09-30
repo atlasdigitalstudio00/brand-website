@@ -1,25 +1,40 @@
 import Link from "next/link";
-
+import { Sparkles, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { BrandMark } from "@/components/ui/BrandMark";
 import { MobileMenu } from "@/components/navigation/MobileMenu";
 
 export function Header() {
   return (
-    <header className="relative z-20 border-b border-[var(--color-border)] bg-[var(--color-background)]/95 backdrop-blur">
-      <Container className="flex h-[4.5rem] items-center justify-between gap-8">
-        <Link href="/" className="font-sans text-lg font-bold tracking-[-0.03em] text-[var(--color-foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]">
-          <span className="text-[var(--color-accent)]">/</span> Atlas Studio
-        </Link>
-        <nav aria-label="Main navigation" className="hidden items-center gap-6 lg:flex">
+    <header className="sticky top-0 z-50 w-full border-b border-[var(--color-border)]/80 bg-[var(--color-background)]/85 backdrop-blur-md transition-all">
+      <Container className="flex h-20 items-center justify-between gap-8">
+        <BrandMark />
+
+        <nav aria-label="Main navigation" className="hidden items-center gap-1.5 lg:flex">
           {siteConfig.navigation.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm font-medium text-[var(--color-muted-foreground)] transition-colors hover:text-[var(--color-foreground)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)]">
+            <Link
+              key={item.href}
+              href={item.href}
+              className="relative rounded-full px-4 py-2 text-sm font-medium text-[var(--color-muted-foreground)] transition-all duration-200 hover:text-[var(--color-foreground)] hover:bg-[var(--color-card-muted)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
+            >
               {item.label}
             </Link>
           ))}
-          <Button href="/resources" className="ml-2 min-h-10 px-4 text-xs">Explore Resources</Button>
         </nav>
+
+        <div className="hidden items-center gap-3 lg:flex">
+          <Button
+            href="/resources"
+            variant="gradient"
+            size="sm"
+            rightIcon={<ArrowRight size={14} />}
+          >
+            Explore Resources
+          </Button>
+        </div>
+
         <MobileMenu />
       </Container>
     </header>

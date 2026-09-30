@@ -1,10 +1,10 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
 import { siteConfig } from "@/config/site";
+import { Button } from "@/components/ui/Button";
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,21 +34,40 @@ export function MobileMenu() {
         aria-controls="mobile-navigation"
         aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
         onClick={() => setIsOpen((open) => !open)}
-        className="inline-flex size-11 items-center justify-center rounded-[var(--radius-md)] text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-card-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+        className="inline-flex size-11 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-card-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
       >
         {isOpen ? <X aria-hidden="true" size={20} /> : <Menu aria-hidden="true" size={20} />}
       </button>
+
       {isOpen ? (
-        <div id="mobile-navigation" className="absolute inset-x-0 top-full border-b border-[var(--color-border)] bg-[var(--color-background)] px-6 py-4 shadow-[var(--shadow-md)]">
-          <nav aria-label="Mobile navigation" className="flex flex-col">
+        <div
+          id="mobile-navigation"
+          className="fixed inset-x-0 top-20 bottom-0 z-50 overflow-y-auto border-b border-[var(--color-border)] bg-[var(--color-background)]/95 p-6 backdrop-blur-xl animate-in fade-in slide-in-from-top-4 duration-200"
+        >
+          <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
             {siteConfig.navigation.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setIsOpen(false)} className="border-b border-[var(--color-border)] py-4 text-sm font-semibold text-[var(--color-foreground)] last:border-0 focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]">
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="rounded-xl px-4 py-3.5 text-base font-semibold text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-card-muted)] hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent)]"
+              >
                 {item.label}
               </Link>
             ))}
-            <Link href="/resources" onClick={() => setIsOpen(false)} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-primary)] px-5 text-sm font-semibold text-[var(--color-primary-foreground)]">
-              Explore Resources
-            </Link>
+
+            <div className="mt-6 pt-6 border-t border-[var(--color-border)]">
+              <Button
+                href="/resources"
+                onClick={() => setIsOpen(false)}
+                variant="gradient"
+                size="lg"
+                className="w-full"
+                rightIcon={<ArrowRight size={16} />}
+              >
+                Explore Resources
+              </Button>
+            </div>
           </nav>
         </div>
       ) : null}
