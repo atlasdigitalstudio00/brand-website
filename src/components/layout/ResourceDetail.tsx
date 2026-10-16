@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Download, ExternalLink, Sparkles, CheckCircle2, ShieldCheck } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
+import { CoverPlaceholder } from "@/components/ui/CoverPlaceholder";
 import { Button } from "@/components/ui/Button";
 import type { Resource } from "@/types/content";
 
@@ -40,9 +41,9 @@ export function ResourceDetail({ resource }: { resource: Resource }) {
             {resource.description}
           </p>
 
-          {resource.image ? (
-            <div className="mt-10 overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[var(--color-card)] p-3 shadow-xl">
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[1.5rem]">
+          <div className="mt-10 overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[var(--color-card)] p-3 shadow-xl">
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[1.5rem]">
+              {resource.image ? (
                 <Image
                   src={resource.image.src}
                   alt={resource.image.alt}
@@ -51,9 +52,11 @@ export function ResourceDetail({ resource }: { resource: Resource }) {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 60vw"
                 />
-              </div>
+              ) : (
+                <CoverPlaceholder title={resource.title} label={resource.category} />
+              )}
             </div>
-          ) : null}
+          </div>
         </Container>
       </header>
 

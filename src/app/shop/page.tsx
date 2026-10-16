@@ -4,6 +4,7 @@ import { CheckCircle2, ExternalLink, Sparkles, ShoppingBag } from "lucide-react"
 
 import { PageIntro } from "@/components/layout/PageIntro";
 import { Container } from "@/components/ui/Container";
+import { CoverPlaceholder } from "@/components/ui/CoverPlaceholder";
 import { products } from "@/content/products";
 import { Button } from "@/components/ui/Button";
 import { AnimateOnScroll, StaggerContainer, StaggerItem } from "@/components/ui/AnimateOnScroll";
@@ -54,9 +55,9 @@ export default function ShopPage() {
                   <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                   <div>
-                    {product.image ? (
-                      <div className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-card-muted)]">
-                        <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <div className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-card-muted)]">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden">
+                        {product.image ? (
                           <Image
                             src={product.image.src}
                             alt={product.image.alt}
@@ -64,9 +65,11 @@ export default function ShopPage() {
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                             sizes="(max-width: 1024px) 100vw, 50vw"
                           />
-                        </div>
+                        ) : (
+                          <CoverPlaceholder title={product.name} label={product.productType} icon={ShoppingBag} />
+                        )}
                       </div>
-                    ) : null}
+                    </div>
 
                     <div className="mt-7 flex items-center justify-between gap-4">
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent-soft)] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[var(--color-accent)] border border-[var(--color-accent)]/20">

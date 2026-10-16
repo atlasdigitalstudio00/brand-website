@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, FileText, Wrench, Sparkles, BookOpen, Clock, Calendar } from "lucide-react";
 import type { ReactNode } from "react";
+import { CoverPlaceholder } from "@/components/ui/CoverPlaceholder";
 import type { Article, Resource, Tool } from "@/types/content";
 
 export function CategoryCard({
@@ -54,9 +55,9 @@ export function ResourceCard({ resource }: { resource: Resource }) {
       <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-violet-500 via-indigo-500 to-cyan-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       
       <div>
-        {resource.image ? (
-          <div className="mb-6 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-card-muted)]">
-            <div className="relative aspect-[16/10] w-full overflow-hidden">
+        <div className="mb-6 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-card-muted)]">
+          <div className="relative aspect-[16/10] w-full overflow-hidden">
+            {resource.image ? (
               <Image
                 src={resource.image.src}
                 alt={resource.image.alt}
@@ -64,9 +65,11 @@ export function ResourceCard({ resource }: { resource: Resource }) {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-            </div>
+            ) : (
+              <CoverPlaceholder title={resource.title} label={resource.category} />
+            )}
           </div>
-        ) : null}
+        </div>
 
         <div className="flex items-center justify-between gap-3">
           <span className="flex size-11 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-card-muted)] text-[var(--color-accent)] border border-[var(--color-border)] transition-transform duration-300 group-hover:scale-105">

@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, ExternalLink, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ExternalLink, ShieldCheck, ShoppingBag, Sparkles } from "lucide-react";
 import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { CoverPlaceholder } from "@/components/ui/CoverPlaceholder";
 import type { Product } from "@/types/content";
 
 export function ProductDetail({ product }: { product: Product }) {
@@ -42,9 +43,9 @@ export function ProductDetail({ product }: { product: Product }) {
                 {product.description}
               </p>
 
-              {product.image ? (
-                <div className="mt-10 overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[var(--color-card)] p-3 shadow-xl">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[1.5rem]">
+              <div className="mt-10 overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[var(--color-card)] p-3 shadow-xl">
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[1.5rem]">
+                  {product.image ? (
                     <Image
                       src={product.image.src}
                       alt={product.image.alt}
@@ -53,9 +54,11 @@ export function ProductDetail({ product }: { product: Product }) {
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 60vw"
                     />
-                  </div>
+                  ) : (
+                    <CoverPlaceholder title={product.name} label={product.productType} icon={ShoppingBag} />
+                  )}
                 </div>
-              ) : null}
+              </div>
             </div>
 
             {/* Price & Checkout Card */}
