@@ -2,6 +2,7 @@ export const siteConfig = {
   name: "Atlas Studio",
   tagline: "Practical digital resources for modern work.",
   email: "atlasdigitalstudio00@gmail.com",
+  turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAAFYenQ_HreJ9soTo",
   description:
     "Templates, guides, tools, and practical resources for developers, creators, freelancers, and digital professionals.",
   navigation: [
