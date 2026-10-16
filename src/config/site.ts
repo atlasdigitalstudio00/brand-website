@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "Atlas Studio",
   tagline: "Practical digital resources for modern work.",
+  email: "atlasdigitalstudio00@gmail.com",
   description:
     "Templates, guides, tools, and practical resources for developers, creators, freelancers, and digital professionals.",
   navigation: [
